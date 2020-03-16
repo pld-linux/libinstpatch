@@ -8,7 +8,6 @@ Group:		Libraries
 #Source0Download: https://github.com/swami/libinstpatch/releases
 Source0:	https://github.com/swami/libinstpatch/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	4b818fba72d792f86b1a3599622f0d42
-#Patch0:	%{name}-what.patch
 URL:		http://www.swamiproject.org/
 BuildRequires:	cmake >= 2.6.3
 BuildRequires:	glib2-devel >= 1:2.14
@@ -40,6 +39,8 @@ Summary:	Header files for libinstpatch library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libinstpatch
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.14
+Requires:	libsndfile-devel >= 1.0.0
 
 %description devel
 Header files for libinstpatch library.
