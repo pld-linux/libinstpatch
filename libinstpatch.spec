@@ -58,7 +58,7 @@ Pliki nagłówkowe biblioteki libinstpatch.
 Summary:	API documentation for libinstpatch library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libinstpatch
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for libinstpatch library.
