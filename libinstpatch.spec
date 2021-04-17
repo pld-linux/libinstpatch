@@ -1,25 +1,27 @@
 #
 # Conditional build:
-%bcond_without	apidocs	# API documentation
+%bcond_without	apidocs		# API documentation
+%bcond_with	introspection	# GObject Introspection [broken cmake support in 1.1.[3-6]]
 
 Summary:	Library for processing digital sample based MIDI instrument "patch" files
 Summary(pl.UTF-8):	Biblioteka do przetwarzania plików "wstawek" instrumentów MIDI opartych na próbkach cyfrowych
 Name:		libinstpatch
-Version:	1.1.5
+Version:	1.1.6
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
 #Source0Download: https://github.com/swami/libinstpatch/releases
 Source0:	https://github.com/swami/libinstpatch/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	e2b4a0867a72e464aab0fd7dae9c1abe
+# Source0-md5:	159f70ffb53f56dd54e4827ef77b1804
 Patch0:		%{name}-gtkdoc.patch
 URL:		http://www.swamiproject.org/
 BuildRequires:	cmake >= 2.6.3
 BuildRequires:	glib2-devel >= 1:2.14
-#BuildRequires:	gobject-introspection-devel
-%{?with_apidocs:BuildRequires:	gtk-doc}
+%{?with_introspection:BuildRequires:	gobject-introspection-devel}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.33.2-3}
 BuildRequires:	libsndfile-devel >= 1.0.0
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,8 +76,8 @@ Dokumentacja API biblioteki libinstpatch.
 install -d build
 cd build
 %cmake .. \
-	%{?with_apidocs:-DGTKDOC_ENABLED=ON}
-#	-DINTROSPECTION_ENABLED=ON broken cmake support in 1.1.[35]
+	%{?with_apidocs:-DGTKDOC_ENABLED=ON} \
+	%{?with_introspection:-DINTROSPECTION_ENABLED=ON}
 
 %{__make}
 
@@ -87,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}/libinstpatch
-cp -p build/docs/reference/libinstpatch/html/* $RPM_BUILD_ROOT%{_gtkdocdir}/libinstpatch
+cp -p build/docs/reference/html/* $RPM_BUILD_ROOT%{_gtkdocdir}/libinstpatch
 %endif
 
 %clean
