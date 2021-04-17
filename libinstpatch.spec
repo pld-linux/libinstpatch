@@ -7,7 +7,7 @@ Summary:	Library for processing digital sample based MIDI instrument "patch" fil
 Summary(pl.UTF-8):	Biblioteka do przetwarzania plików "wstawek" instrumentów MIDI opartych na próbkach cyfrowych
 Name:		libinstpatch
 Version:	1.1.6
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Libraries
 #Source0Download: https://github.com/swami/libinstpatch/releases

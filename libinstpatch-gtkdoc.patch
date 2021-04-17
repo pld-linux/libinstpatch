@@ -1,11 +1,11 @@
---- libinstpatch-1.1.5/docs/reference/CMakeLists.txt.orig	2020-05-26 13:09:21.000000000 +0200
-+++ libinstpatch-1.1.5/docs/reference/CMakeLists.txt	2021-01-17 18:01:36.473917998 +0100
-@@ -40,7 +40,7 @@
+--- libinstpatch-1.1.6/docs/reference/CMakeLists.txt.orig	2021-04-17 22:01:20.354453417 +0200
++++ libinstpatch-1.1.6/docs/reference/CMakeLists.txt	2021-04-17 22:07:51.474713430 +0200
+@@ -39,7 +39,7 @@ if (GTKDOC_FOUND)
      CFLAGS -I${CMAKE_SOURCE_DIR}
      LDFLAGS -L${CMAKE_CURRENT_BINARY_DIR}/../../libinstpatch -linstpatch-1.0
      LDPATH ${CMAKE_CURRENT_BINARY_DIR}/../../libinstpatch
 -    DEPENDS instpatch-1.0
 +    DEPENDS libinstpatch
    )
- endif ()
  
+   add_custom_target(documentation ALL DEPENDS doc-libinstpatch)
