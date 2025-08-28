@@ -6,13 +6,13 @@
 Summary:	Library for processing digital sample based MIDI instrument "patch" files
 Summary(pl.UTF-8):	Biblioteka do przetwarzania plików "wstawek" instrumentów MIDI opartych na próbkach cyfrowych
 Name:		libinstpatch
-Version:	1.1.6
-Release:	2
+Version:	1.1.7
+Release:	1
 License:	LGPL v2.1
 Group:		Libraries
 #Source0Download: https://github.com/swami/libinstpatch/releases
 Source0:	https://github.com/swami/libinstpatch/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	159f70ffb53f56dd54e4827ef77b1804
+# Source0-md5:	bfec3562c286d87c0883f506bd8ca5dd
 Patch0:		%{name}-gtkdoc.patch
 URL:		http://www.swamiproject.org/
 BuildRequires:	cmake >= 2.6.3
