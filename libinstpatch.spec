@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# API documentation
-%bcond_with	introspection	# GObject Introspection [broken cmake support in 1.1.[3-6]]
+%bcond_without	introspection	# GObject Introspection
 
 Summary:	Library for processing digital sample based MIDI instrument "patch" files
 Summary(pl.UTF-8):	Biblioteka do przetwarzania plików "wstawek" instrumentów MIDI opartych na próbkach cyfrowych
 Name:		libinstpatch
-Version:	1.1.7
+Version:	1.1.8
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
 #Source0Download: https://github.com/swami/libinstpatch/releases
 Source0:	https://github.com/swami/libinstpatch/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	bfec3562c286d87c0883f506bd8ca5dd
+# Source0-md5:	811005197dc05aa19f565e0eaefe168f
 Patch0:		%{name}-gtkdoc.patch
 URL:		http://www.swamiproject.org/
 BuildRequires:	cmake >= 2.6.3
@@ -46,9 +46,9 @@ kompresowane i zapisywane.
 Summary:	Header files for libinstpatch library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libinstpatch
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.14
-Requires:	libsndfile-devel >= 1.0.0
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	glib2-devel%{?_isa} >= 1:2.14
+Requires:	libsndfile-devel%{?_isa} >= 1.0.0
 
 %description devel
 Header files for libinstpatch library.
@@ -101,13 +101,19 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README.md TODO.tasks
-%attr(755,root,root) %{_libdir}/libinstpatch-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libinstpatch-1.0.so.2
+%{_libdir}/libinstpatch-1.0.so.*.*.*
+%ghost %{_libdir}/libinstpatch-1.0.so.2
+%if %{with introspection}
+%{_libdir}/girepository-1.0/Ipatch-1.1.typelib
+%endif
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libinstpatch-1.0.so
+%{_libdir}/libinstpatch-1.0.so
 %{_includedir}/libinstpatch-2
+%if %{with introspection}
+%{_datadir}/gir-1.0/Ipatch-1.1.gir
+%endif
 %{_pkgconfigdir}/libinstpatch-1.0.pc
 
 %if %{with apidocs}
